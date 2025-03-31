@@ -174,3 +174,16 @@ function displayScores() {
         tbody.appendChild(row);
     });
 }
+
+function newPlayer() {
+    setCookie('username', '', -1);
+    location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    checkUsername();
+    fetchQuestions();
+    displayScores();
+    document.getElementById('trivia-form').addEventListener('submit', handleFormSubmit);
+    document.getElementById('new-player').addEventListener('click', newPlayer);
+});
