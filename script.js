@@ -71,3 +71,18 @@ function showLoading(isLoading) {
     document.getElementById("loading-container").classList.toggle("hidden", !isLoading);
     document.getElementById("question-container").classList.toggle("hidden", isLoading);
 }
+
+function displayQuestions(questions) {
+    const questionContainer = document.getElementById('question-container');
+    questionContainer.innerHTML = '';
+
+    questions.forEach((question, index) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.classList.add('question-box');
+        questionDiv.innerHTML = `
+            <p>${question.question}</p>
+            ${createAnswerOptions(question.correct_answer, question.incorrect_answers, index)}
+        `;
+        questionContainer.appendChild(questionDiv);
+    });
+}
