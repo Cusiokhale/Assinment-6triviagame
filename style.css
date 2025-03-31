@@ -67,3 +67,26 @@ body {
 #trivia-form {
 	margin-bottom: 1.875rem;
 }
+
+#question-container > div {
+	padding: 0.9375rem;
+	margin-bottom: 0.625rem;
+	border: 1px solid #ddd;
+	border-radius: 0.3125rem;
+	background-color: #fafafa;
+}
+
+#question-container p {
+	margin: 0 0 0.625rem 0;
+	font-weight: 500;
+}
+
+label {
+	display: block;
+	margin: 0.3125rem 0;
+	cursor: pointer;
+}
+
+input[type="radio"] {
+	margin-right: 0.625rem;
+}
