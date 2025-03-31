@@ -15,6 +15,7 @@
     background-color: #ffcdd2;
 }
 
+
 #loading-container .skeleton {
 	animation: loading 1.5s infinite ease-in-out;
 }
@@ -127,7 +128,6 @@ button {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 1.25rem;
-
 }
 
 #score-table th,
