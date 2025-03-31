@@ -156,3 +156,21 @@ function highlightAnswers() {
         });
     });
 }
+
+function saveScore(username, score) {
+    let scores = JSON.parse(localStorage.getItem('triviaScores')) || [];
+    scores.push({ username, score });
+    localStorage.setItem('triviaScores', JSON.stringify(scores));
+}
+
+function displayScores() {
+    const scores = JSON.parse(localStorage.getItem('triviaScores')) || [];
+    const tbody = document.querySelector('#score-table tbody');
+    tbody.innerHTML = '';
+
+    scores.forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${entry.username}</td><td>${entry.score}/10</td>`;
+        tbody.appendChild(row);
+    });
+}
