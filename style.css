@@ -33,3 +33,20 @@
 	border-radius: 0.25rem;
 	margin: 0.625rem 0;
 }
+
+.skeleton-option {
+	height: 8em;
+}
+
+@keyframes loading {
+	0% {
+		background-color: #e0e0e0;
+	}
+	50% {
+		background-color: #f0f0f0;
+	}
+	100% {
+		background-color: #e0e0e0;
+	}
+}
+
