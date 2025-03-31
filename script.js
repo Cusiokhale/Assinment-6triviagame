@@ -86,3 +86,73 @@ function displayQuestions(questions) {
         questionContainer.appendChild(questionDiv);
     });
 }
+
+function createAnswerOptions(correctAnswer, incorrectAnswers, questionIndex) {
+    const allAnswers = [correctAnswer, ...incorrectAnswers].sort(() => Math.random() - 0.5);
+    return allAnswers.map(answer => `
+        <label>
+            <input type="radio" name="answer${questionIndex}" value="${answer}" ${answer === correctAnswer ? 'data-correct="true"' : ''}>
+            ${answer}
+        </label>
+    `).join('');
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const usernameInput = document.getElementById('username');
+    let username = getCookie('username');
+
+    if (!username) {
+        username = usernameInput.value.trim();
+        if (username === "") {
+            alert("Please enter your name to continue.");
+            return;
+        }
+        setCookie('username', username, 7);
+        usernameInput.disabled = true;
+        usernameInput.style.display = 'none';
+        greetUser(username);
+    }
+
+    const score = calculateScore();
+    saveScore(username, score);
+    displayScores();
+    highlightAnswers();
+
+    alert(`${username}, your score is ${score}/10!`);
+
+    document.getElementById('new-player').classList.remove('hidden');
+
+    setTimeout(fetchQuestions, 5000);
+}
+
+function calculateScore() {
+    let score = 0;
+    const questions = document.querySelectorAll('#question-container > .question-box');
+
+    questions.forEach((questionDiv, index) => {
+        const selectedOption = questionDiv.querySelector(`input[name="answer${index}"]:checked`);
+        if (selectedOption && selectedOption.dataset.correct === "true") {
+            score += 1;
+        }
+    });
+
+    return score;
+}
+
+function highlightAnswers() {
+    const questions = document.querySelectorAll('#question-container > .question-box');
+
+    questions.forEach((questionDiv, index) => {
+        const options = questionDiv.querySelectorAll(`input[name="answer${index}"]`);
+        options.forEach(option => {
+            const label = option.parentElement;
+            if (option.dataset.correct === "true") {
+                label.classList.add('correct-answer');
+            } else if (option.checked && option.dataset.correct !== "true") {
+                label.classList.add('incorrect-answer');
+            }
+        });
+    });
+}
