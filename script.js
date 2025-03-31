@@ -51,3 +51,23 @@ function greetUser(username) {
 
     greetingElement.textContent = `Welcome back, ${username}! Good luck!`;
 }
+
+function fetchQuestions() {
+    showLoading(true);
+
+    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+        .then((response) => response.json())
+        .then((data) => {
+            displayQuestions(data.results);
+            showLoading(false);
+        })
+        .catch((error) => {
+            console.error("Error fetching questions:", error);
+            showLoading(false);
+        });
+}
+
+function showLoading(isLoading) {
+    document.getElementById("loading-container").classList.toggle("hidden", !isLoading);
+    document.getElementById("question-container").classList.toggle("hidden", isLoading);
+}
