@@ -1,0 +1,16 @@
+.hidden {
+    display: none;
+}
+.question-box {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+}
+.correct-answer {
+    background-color: #c8e6c9;
+}
+.incorrect-answer {
+    background-color: #ffcdd2;
+}
