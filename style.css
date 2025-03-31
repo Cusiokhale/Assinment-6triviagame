@@ -14,3 +14,22 @@
 .incorrect-answer {
     background-color: #ffcdd2;
 }
+
+#loading-container .skeleton {
+	animation: loading 1.5s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -100%;
+	}
+	100% {
+		background-position: 100%;
+	}
+}
+
+.skeleton {
+	background-color: #e0e0e0;
+	border-radius: 0.25rem;
+	margin: 0.625rem 0;
+}
