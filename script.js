@@ -19,3 +19,35 @@ function getCookie(name) {
         }
     }
     return "";
+
+}
+
+function checkUsername() {
+    const usernameInput = document.getElementById('username');
+    const username = getCookie('username');
+
+    if (username !== "") {
+        usernameInput.value = username;
+        usernameInput.disabled = true;
+        usernameInput.style.display = 'none';
+        greetUser(username);
+    } else {
+        usernameInput.value = '';
+        usernameInput.disabled = false;
+        usernameInput.style.display = 'block';
+    }
+}
+
+function greetUser(username) {
+    const triviaForm = document.getElementById('trivia-form');
+    let greetingElement = document.getElementById('user-greeting');
+
+    if (!greetingElement) {
+        greetingElement = document.createElement('p');
+        greetingElement.id = 'user-greeting';
+        greetingElement.style.fontWeight = 'bold';
+        triviaForm.prepend(greetingElement);
+    }
+
+    greetingElement.textContent = `Welcome back, ${username}! Good luck!`;
+}
